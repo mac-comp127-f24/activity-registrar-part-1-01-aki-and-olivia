@@ -75,6 +75,14 @@ class RegistrarTest {
         });
     }
 
+    @Test
+    void clientsCannotModifyRoster() {
+       assertThrows(UnsupportedOperationException.class, () -> {
+            List<Student> students = basketWeaving101.getRoster();
+            students.add(sally);
+        });
+    }
+
 
     @Test
     void cannotEnrollPastLimit() {
