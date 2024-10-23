@@ -1,6 +1,6 @@
 package registrar;
 
-import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,14 +36,14 @@ class RegistrarTest {
 
     @Test
     void studentStartsInNoCourses() {
-        assertEquals(List.of(), sally.getCourses());
+        assertEquals(Set.of(), sally.getCourses());
     }
 
     @Test
     void studentCanEnroll() {
         sally.enrollIn(comp127);
-        assertEquals(List.of(comp127), sally.getCourses());
-        assertEquals(List.of(sally), comp127.getRoster());
+        assertEquals(Set.of(comp127), sally.getCourses());
+        assertEquals(Set.of(sally), comp127.getRoster());
     }
 
     // ------ Enrollment limits ------
@@ -70,7 +70,7 @@ class RegistrarTest {
     @Test
     void clientsCannotModifyCourses() {
        assertThrows(UnsupportedOperationException.class, () -> {
-            List<Course> courses = sally.getCourses();
+            Set<Course> courses = sally.getCourses();
             courses.add(comp127);
         });
     }
@@ -78,7 +78,7 @@ class RegistrarTest {
     @Test
     void clientsCannotModifyRoster() {
        assertThrows(UnsupportedOperationException.class, () -> {
-            List<Student> students = basketWeaving101.getRoster();
+            Set<Student> students = basketWeaving101.getRoster();
             students.add(sally);
         });
     }
