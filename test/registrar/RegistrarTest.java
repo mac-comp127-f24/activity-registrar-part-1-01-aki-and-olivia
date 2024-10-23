@@ -68,6 +68,15 @@ class RegistrarTest {
     }
 
     @Test
+    void clientsCannotModifyCourses() {
+       assertThrows(UnsupportedOperationException.class, () -> {
+            List<Course> courses = sally.getCourses();
+            courses.add(comp127);
+        });
+    }
+
+
+    @Test
     void cannotEnrollPastLimit() {
         factory.enrollMultipleStudents(comp127, 16);
         assertFalse(sally.enrollIn(comp127));
